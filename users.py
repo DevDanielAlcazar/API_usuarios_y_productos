@@ -51,7 +51,7 @@ def search_user(id: int):
     
 
 #Inserta valores
-@users.post("/user/", status_code=201)
+@users.post("/user/", response_model= User, status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
         raise HTTPException(status_code=409, detail="El usuario ya existe")
@@ -61,7 +61,7 @@ async def user(user: User):
     return user
 
 #Actualiza datos
-@users.put("/user/", status_code=200)
+@users.put("/user/", status_code=200, response_model= User)
 async def user(user: User):
     found = False
 
@@ -85,3 +85,4 @@ async def user(id: int):
             found = True
     if not found:
             raise HTTPException(status_code=404,detail="No se ha eliminado al usuario")
+    
