@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 
-users = FastAPI()
+users = APIRouter(tags= ["Users"])
 
 
 #entidad usuario
