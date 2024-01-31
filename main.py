@@ -3,7 +3,7 @@ import uvicorn
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from routers import products, users, auth_basic_users, auth_jwt_users
+from routers import products, users, auth_basic_users, auth_jwt_users, users_db
 
 app = FastAPI()
 
@@ -12,14 +12,14 @@ app.include_router(products.router)
 app.include_router(users.users)
 app.include_router(auth_jwt_users.router)
 app.include_router(auth_basic_users.router)
-
+app.include_router(users_db.users)
 
 app.mount("/statics", StaticFiles(directory="statics"), name="statics")
 #Documentacion oficial de FastAPI https://fastapi.tiangolo.com/es/
 
 @app.get("/")
 async def read_root():
-    return {"Saludo": "Hola FastApi"}
+    return {"Desarrollado by": "Jesús Daniel Nava Alcazar"}
 
 @app.get("/links")
 async def root_url():
